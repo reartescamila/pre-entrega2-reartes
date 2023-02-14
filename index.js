@@ -1,73 +1,162 @@
-// class Usuario {
-//   constructor(nombre, clave) {
-//     this.nombre = nombre;
-//     this.clave = clave;
-//   }
-// }
+/* 
+PRE ENTREGA 2 REARTES CAMILA 
+*/
 
-// function existe(usuarios, nombre) {
-//   for (let usuario of usuarios) {
-//     if (usuario.nombre.toUpperCase() === nombre.toUpperCase()) {
-//       return true;
-//     }
-//   }
-//   return false;
-// }
+let pasajeros = [];
 
-// const usuarios = [];
-// usuarios.push(new Usuario("camila", "clave"));
+const suma = (a, b) => a + b;
+const resta = (a, b) => a - (a * b) / 100;
+const iva = (x) => x * 1.21;
 
-// const usuario1 = new Usuario(
-//   prompt("ingrese su usuario"),
-//   prompt("ingrese su clave")
-// );
-// if (!existe(usuarios, usuario1.nombre)) {
-//   usuarios.push(usuario1);
-// } else {
-//   alert("El usuario " + usuario1.nombre.toUpperCase() + " ya existe");
-// }
+function agregarPasaje() {
+  let origen = prompt(`
+  Ingrese ciudad de origen. OPCIONES:
+  -CORDOBA
+  -SAN LUIS
+  -BUENOS AIRES`).toLowerCase();
+  let destino = prompt(`
+  Ingrese ciudad de destino. OPCIONES:
+  -CORDOBA
+  -SAN LUIS
+  -BUENOS AIRES`).toLowerCase();
+  let dni = parseInt(prompt("Ingrese el DNI del pasajero"));
+  let nombrePasajero = prompt("Ingrese NOMBRE Y APELLIDO del pasajero");
 
-class Bus {
-    constructor(origen, destino, horario, chofer) {
-      this.origen = origen;
-      this.destino = destino;
-      this.horario = horario;
-      this.chofer = chofer;
-    }
-  }
-  
-  function filtroBusesporDestino(equipo, destino) {
-    return equipo.filter(
-      (objeto) => objeto.destino.toUpperCase() === destino.toUpperCase()
-    );
-  }
-  
-  function listaPasajeros(buses) {
-    let lista = "";
-    for (const item of buses) {
-      lista +=
-        " COLECTIVO DISPONIBLE : " +
-        " ORIGEN " +
-        item.origen +
-        " DESTINO " +
-        item.destino +
-        " HORARIO DE PARTIDA " +
-        item.horario;
-    }
-    return lista;
-  }
-  
-  const buses = [];
-  buses.push(new Bus("córdoba", "buenos aires", "18:30", "Roberto, Sanchez"));
-  buses.push(new Bus("córdoba", "mendoza", "19:30", "Roberto, Juarez"));
-  buses.push(new Bus("córdoba", "villa maria", "20:30", "Carlos, Reartes"));
-  buses.push(new Bus("córdoba", "retiro", "21:30", "Gustavo, Reartes"));
-  buses.push(new Bus("córdoba", "buenos aires", "22:30", "Alberto, Sanchez"));
-  
-  let filtro = filtroBusesporDestino(buses, prompt("ingrese el destino"));
-  if (filtro.length > 0) {
-    alert(listaPasajeros(filtro));
+  if (origen === "cordoba" && destino === "buenos aires") {
+    alert("El pasaje ha sido comprado con exito");
+    let objeto = {
+      id: pasajeros.length + 1,
+      origen,
+      destino,
+      dni,
+      nombrePasajero,
+      precio: 1500,
+      descuento: 5,
+      precioTotal: iva(resta(1500, 5)),
+    };
+    pasajeros.push(objeto);
+    console.log(pasajeros);
+  } else if (origen === "cordoba" && destino === "san luis") {
+    alert("El pasaje ha sido comprado con exito");
+    let objeto = {
+      id: pasajeros.length + 1,
+      origen,
+      destino,
+      dni,
+      nombrePasajero,
+      precio: 1200,
+      descuento: 15,
+      precioTotal: iva(resta(1200, 15)),
+    };
+    pasajeros.push(objeto);
+    console.log(pasajeros);
+  } else if (origen === "san luis" && destino === "cordoba") {
+    alert("El pasaje ha sido comprado con exito");
+    let objeto = {
+      id: pasajeros.length + 1,
+      origen,
+      destino,
+      dni,
+      nombrePasajero,
+      precio: 1000,
+      descuento: 10,
+      precioTotal: iva(resta(1000, 10)),
+    };
+    pasajeros.push(objeto);
+    console.log(pasajeros);
+  } else if (origen === "san luis" && destino === "buenos aires") {
+    alert("El pasaje ha sido comprado con exito");
+    let objeto = {
+      id: pasajeros.length + 1,
+      origen,
+      destino,
+      dni,
+      nombrePasajero,
+      precio: 2000,
+      descuento: 15,
+      precioTotal: iva(resta(2000, 15)),
+    };
+    pasajeros.push(objeto);
+    console.log(pasajeros);
+  } else if (origen === "buenos aires" && destino === "cordoba") {
+    alert("El pasaje ha sido comprado con exito");
+    let objeto = {
+      id: pasajeros.length + 1,
+      origen,
+      destino,
+      dni,
+      nombrePasajero,
+      precio: 1500,
+      descuento: 15,
+      precioTotal: iva(resta(1500, 15)),
+    };
+    pasajeros.push(objeto);
+    console.log(pasajeros);
+  } else if (origen === "buenos aires" && destino === "san luis") {
+    alert("El pasaje ha sido comprado con exito");
+    let objeto = {
+      id: pasajeros.length + 1,
+      origen,
+      destino,
+      dni,
+      nombrePasajero,
+      precio: 1000,
+      descuento: 10,
+      precioTotal: iva(resta(1000, 10)),
+    };
+    pasajeros.push(objeto);
+    console.log(pasajeros);
   } else {
-    alert("NO EXISTE COLECTIVOS PARA ESE DESTINO");
+    alert("USTED NO HA SELECCIONADO SU PASAJE CORRECTAMENTE");
   }
-  
+}
+
+function buscar() {
+  let dni = parseInt(prompt("Ingrese el DNI del pasajero que desea consultar"));
+  let busqueda = pasajeros.filter((item) => item.dni === dni);
+  let mensaje = "";
+  busqueda.forEach((item) => {
+    mensaje += `
+    ID: ${item.id}
+    TERMINAL DE ORIGEN: ${item.origen}
+    TERMINAL DE DESTINO: ${item.destino}
+    DNI: ${item.dni}
+    NOMBRE Y APELLIDO: ${item.nombrePasajero}
+    Precio: $${item.precio}
+    Descuento: %${item.descuento}
+    PRECIO TOTAL (+iva): $${item.precioTotal}
+  `;
+  });
+
+  alert(mensaje);
+}
+
+function ordenarDeMayor() {
+  console.log(
+    pasajeros.sort((a, b) => {
+      if (a.precio > b.precioTotal) {
+        return -1;
+      }
+      if (a.precio < b.precioTotal) {
+        return 1;
+      }
+      return 0;
+    })
+  );
+}
+
+agregarPasaje();
+buscar();
+ordenarDeMayor(); //Observable en la consola
+
+while (
+  (seguirAgregando =
+    prompt(
+      `Si desea seguir COMPRANDO Pasajes, presione ENTER.
+   Si desea finalizar escriba: NO`
+    ).toLowerCase() != "no")
+) {
+  agregarPasaje();
+  buscar();
+  ordenarDeMayor(); //Observable en la consola
+}
