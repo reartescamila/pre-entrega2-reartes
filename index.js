@@ -107,18 +107,11 @@ if (decisionStock == "si") {
     agregarColectivo();
     decisionStock = prompt(
       "desea agregar o seguir agregando colectivos? si o no"
-    ).toLowerCase();  
+    ).toLowerCase();
   }
 } else if (decisionStock == "no") {
   alert("HA FINALIZADO EL PROCESO DE AGREGADO DE STOCK");
 }
-
-// while (decisionStock != "no") {
-//   decisionStock = prompt(
-//     "desea agregar o seguir agregando colectivos? si o no"
-//   ).toLowerCase();  
-//   agregarColectivo();
-// }
 
 // BUSQUEDA POR FILTRADO
 let filter = prompt(`
@@ -145,3 +138,6 @@ if (filter == "si") {
 } else if (filter == "no") {
   alert("LA BUSQUEDA TERMINADO");
 }
+
+
+//
